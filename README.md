@@ -39,3 +39,9 @@ Building
 To build your application, you can simply run `npm run build`. This will copy the files to the dist directory, but will not start the Electron application.
 
 You can run your application with `npm run start`
+
+
+Material Design
+===============
+https://material.angular.io/
+

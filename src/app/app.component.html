@@ -1,14 +1,19 @@
 <md-sidenav-layout>
 
-  <md-toolbar color="primary">
-    Angular Material2 Example App
-  </md-toolbar>
+    <md-toolbar color="primary">
+        Angular Material2 Example App
+    </md-toolbar>
 
-  <div class="container">
+    <div class="container">
 
-    <h1>{{text_hello_world}} <small>{{text_small}}</small> </h1>
-    <input type="text" [(ngModel)]="text_small" />
+        <h1>{{text_hello_world}}
+            <small>{{text_small}}</small>
+        </h1>
 
-    <button (click)="test()">Click me</button>
-  </div>
+        <md-input class="demo-full-width" type="text" [(ngModel)]="text_small">
+        </md-input>
+
+        <button md-raised-button color="primary" (click)="test()">Click me</button>
+
+    </div>
 </md-sidenav-layout>
