@@ -5,15 +5,20 @@
     </md-toolbar>
 
     <div class="container">
+        <md-tab-group class="demo-tab-group">
+            <md-tab label="Hello">
+                <h1>{{title}}</h1>
+                <small>{{message}}</small>
 
-        <h1>{{text_hello_world}}
-            <small>{{text_small}}</small>
-        </h1>
+                <div>
+                    <md-input type="text" [(ngModel)]="message"></md-input>
+                </div>
 
-        <md-input class="demo-full-width" type="text" [(ngModel)]="text_small">
-        </md-input>
-
-        <button md-raised-button color="primary" (click)="test()">Click me</button>
-
+                <button md-raised-button color="primary" (click)="test()">Click me</button>
+            </md-tab>
+            <md-tab label="Angular">
+                This tab is about combustion!
+            </md-tab>
+        </md-tab-group>
     </div>
 </md-sidenav-layout>
