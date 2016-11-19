@@ -50,8 +50,8 @@ export class AppComponent implements OnInit {
 
   private selectImageFile(path: string): void {
     this.imagePath = path;
-    let snackBar = this.snackBar.open(`Selected path: ${path}`, null, new MdSnackBarConfig());
-    setTimeout(() => { snackBar.dismiss(); }, 5000);
+    let snackBarRef = this.snackBar.open(`Selected path: ${path}`, null, new MdSnackBarConfig());
+    setTimeout(() => snackBarRef.dismiss(), 5000);
   }
 
 }
