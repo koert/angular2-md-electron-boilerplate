@@ -25,5 +25,5 @@ app.on('ready', () => {
 
 ipcMain.on('message', (event, arg) => {
   console.log(`Received ${arg}`);
-  event.sender.send("reply", "pong");
+  event.sender.send('reply', "pong");
 });

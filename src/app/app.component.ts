@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MdToolbar } from '@angular/material';
 import {MdSnackBar, MdSnackBarConfig} from '@angular/material';
+import {MdLiveAnnouncer} from '@angular/material';
 
 const ipcRenderer = require('electron').ipcRenderer;
 
@@ -9,17 +10,19 @@ const ipcRenderer = require('electron').ipcRenderer;
   selector: 'my-app',
   templateUrl: 'app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-
-  constructor(public snackBar: MdSnackBar) {
-    ipcRenderer.on("reply", (event, arg) => {
-      console.log("Reply was " + arg);
-    });
+  constructor(private snackBar: MdSnackBar, private live: MdLiveAnnouncer) {
   }
 
   public title: string = "Hello Angular 2!";
   public message: string = "Greatness awaits..."
+
+  ngOnInit(): void {
+    ipcRenderer.on('reply', (event, arg) => {
+      console.log("Reply: " + arg); // prints "pong"
+    })
+  }
 
   public test(): void {
     console.log("Getestet");
@@ -27,7 +30,12 @@ export class AppComponent {
 
     let config = new MdSnackBarConfig();
     // config.duration = 0;
-    this.snackBar.open(this.message, null, config);
+    let snackBar = this.snackBar.open(this.message, null, config);
+    setTimeout(() => { snackBar.dismiss(); }, 5000);
+  }
+
+  public announce(): void {
+    this.live.announce(this.message);
   }
 
 }
