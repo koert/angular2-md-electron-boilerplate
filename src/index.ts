@@ -1,6 +1,8 @@
 'use strict';
 
-const electron : Electron.ElectronMainAndRenderer = require('electron');
+const electron: Electron.ElectronMainAndRenderer = require('electron');
+const dialog: Electron.Dialog = require('electron').dialog
+
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
@@ -26,4 +28,12 @@ app.on('ready', () => {
 ipcMain.on('message', (event, arg) => {
   console.log(`Received ${arg}`);
   event.sender.send('reply', "pong");
+});
+
+ipcMain.on('open-image-file', function (event) {
+  dialog.showOpenDialog({
+    properties: ['openFile', 'openDirectory']
+  }, function (files) {
+    if (files) event.sender.send('selected-image-file', files)
+  })
 });

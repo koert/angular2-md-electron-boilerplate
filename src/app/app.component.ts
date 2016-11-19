@@ -21,7 +21,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     ipcRenderer.on('reply', (event, arg) => {
       console.log("Reply: " + arg); // prints "pong"
-    })
+    });
+
+    ipcRenderer.on('selected-image-file', (event, path) => this.selectImageFile(path));
+    // ipcRenderer.on('selected-image-file', function (event, path) {
+    //   this.selectImageFile(path);
+    // });
   }
 
   public test(): void {
@@ -36,6 +41,15 @@ export class AppComponent implements OnInit {
 
   public announce(): void {
     this.live.announce(this.message);
+  }
+
+  public openImageFileSelect(): void {
+    ipcRenderer.send('open-image-file');
+  }
+
+  private selectImageFile(path: String): void {
+    let snackBar = this.snackBar.open(`Selected path: ${path}`, null, new MdSnackBarConfig());
+    setTimeout(() => { snackBar.dismiss(); }, 5000);
   }
 
 }
