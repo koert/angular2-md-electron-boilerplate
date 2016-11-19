@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
 
   public title: string = "Hello Angular 2!";
   public message: string = "Greatness awaits..."
+  public imagePath: string;
 
   ngOnInit(): void {
     ipcRenderer.on('reply', (event, arg) => {
@@ -47,7 +48,8 @@ export class AppComponent implements OnInit {
     ipcRenderer.send('open-image-file');
   }
 
-  private selectImageFile(path: String): void {
+  private selectImageFile(path: string): void {
+    this.imagePath = path;
     let snackBar = this.snackBar.open(`Selected path: ${path}`, null, new MdSnackBarConfig());
     setTimeout(() => { snackBar.dismiss(); }, 5000);
   }

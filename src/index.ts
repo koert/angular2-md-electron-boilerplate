@@ -31,9 +31,15 @@ ipcMain.on('message', (event, arg) => {
 });
 
 ipcMain.on('open-image-file', function (event) {
-  dialog.showOpenDialog({
-    properties: ['openFile', 'openDirectory']
-  }, function (files) {
-    if (files) event.sender.send('selected-image-file', files)
-  })
+  dialog.showOpenDialog(
+    {
+      properties: ['openFile'],
+      filters: [
+        {name: 'Images', extensions: ['jpg', 'png', 'gif']},
+      ]
+    },
+    function (files) {
+      if (files) event.sender.send('selected-image-file', files)
+    }
+  )
 });

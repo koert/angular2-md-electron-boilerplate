@@ -22,6 +22,9 @@
                     This is a card.
                 </md-card>
                 <md-card>
+                    <div>
+                        <img *ngIf="imagePath" src="{{imagePath}}">
+                    </div>
                     <button md-raised-button color="primary" (click)="openImageFileSelect()">Select image file</button>
                 </md-card>
             </md-tab>
